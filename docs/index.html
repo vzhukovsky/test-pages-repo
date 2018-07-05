@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<script src="//vlibs.advertising.com/prebid/adapters=openx,appnexus;/prebid-2.x.x.js" async></script>
+<script src="//www.googletagservices.com/tag/js/gpt.js" async></script>
+
+<script>
+    var PREBID_TIMEOUT = 2000;
+
+    var adUnits = [{
+        code: 'div-gpt-ad-1478579479581-0',
+        sizes: [[728, 90]],
+        bids: [
+            {bidder: 'onedisplay', params: {placement: '3675024', network: '9599.1'}}
+        ]
+    }, {
+        code: 'div-gpt-ad-1438955597722-0',
+        sizes: [[300, 250]],
+        bids: [
+            {bidder: 'onedisplay', params: {placement: '3675026', network: '9599.1'}}
+        ]
+    }, {
+        code: 'div-gpt-ad-1439394117151-0',
+        sizes: [[300, 250]],
+        bids: [
+            {bidder: 'onedisplay', params: {placement: '3675027', network: '9599.1'}}
+        ]
+    }
+    ];
+
+    var pbjs = pbjs || {};
+    pbjs.que = pbjs.que || [];
+</script>
+
+<script>
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    googletag.cmd.push(function () {
+        googletag.pubads().disableInitialLoad();
+    });
+
+    pbjs.que.push(function () {
+        pbjs.enableAnalytics({
+            provider: 'aol', // Enable AOL Container solution reporting
+            options: {}
+        });
+        pbjs.addAdUnits(adUnits);
+        pbjs.requestBids({
+            timeout: PREBID_TIMEOUT, // AOL Container Solution requires the timeout is passed in to pbjs.requestBids.
+            bidsBackHandler: function () {
+                googletag.cmd.push(function () {
+                    pbjs.que.push(function () {
+                        pbjs.setTargetingForGPTAsync();
+                        googletag.pubads().refresh();
+                    });
+                });
+            }
+        });
+    });
+</script>
+<script>
+    googletag.cmd.push(function () {
+        googletag.defineSlot('/4248977/Prebid_728x90ATF', [[728, 90]], 'div-gpt-ad-1478579479581-0').addService(googletag.pubads());
+        googletag.defineSlot('/4248977/Prebid300x250ATF', [[300, 250]], 'div-gpt-ad-1438955597722-0').addService(googletag.pubads());
+        googletag.defineSlot('/4248977/Prebid300x250BTF', [[300, 250]], 'div-gpt-ad-1439394117151-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+    });
+</script>
+
+
+<div>
+    <div style="padding: 10px 10px 10px 10px; display:block">
+        <h3><strong>Oath Container library</strong></h3>
+        <br>
+        <h3>Live Container Auction</h3>
+        <h3>SLOT 1</h3>
+        <div id="div-gpt-ad-1478579479581-0"></div>
+        <h3>SLOT 2</h3>
+        <div id="div-gpt-ad-1438955597722-0"></div>
+        <h3>SLOT 3</h3>
+        <div id="div-gpt-ad-1439394117151-0"></div>
+        </body>
+</html>
